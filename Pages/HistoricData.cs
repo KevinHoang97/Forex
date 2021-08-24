@@ -17,7 +17,7 @@ namespace Forex.Pages
 
         public partial class HistoricData : ComponentBase
         {
-            private Root Mains;
+            private Root Mains = new Root();
             private string ErrorMessage;
             public string instrument = "EUR_USD";
             private string type = "anime";
@@ -41,14 +41,18 @@ namespace Forex.Pages
                     //  string uri = "https://api.jikan.moe/v3/schedule/monday";
                     // string uri = "https://api.jikan.moe/v3/season/" + year + "/" + season; 
                     string uri = "https://api-fxpractice.oanda.com/v3/instruments/" + instrument + "/candles?count=" + count + "&price=M&granularity=S5";
+                    Console.WriteLine(uri);
                     Mains = await Http.GetJsonAsync<Root>(uri);
-                        ErrorMessage = String.Empty;
                     Console.WriteLine(Mains);
+                    ErrorMessage = String.Empty;
+                    Console.WriteLine(ErrorMessage);
                     }
                 }
                 catch (Exception e)
                 {
+                Console.WriteLine(e);
                     ErrorMessage = e.Message;
+                Console.WriteLine(ErrorMessage);
                 }
             }
             

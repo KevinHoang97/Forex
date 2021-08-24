@@ -39,23 +39,25 @@ else
     </thead>
     <tbody>
         
+        @if (Mains != null) {
         @foreach (var ani in Mains.candles)
         {
-            <tr>
-                <td>@ani.mid</td>
-                
+        <tr>
+            <td>@ani.complete</td>
 
-                @*<td>
-                    @foreach (var gen in )
-                    {
-                    <td>@gen</td>
 
-                }
-                    </td>
-*@
-                </tr>
+            <td>
+            @foreach (var gen in ani.mid)
+            {
+            <td>@</td>
 
             }
+            </td>
+            
+        </tr>
+
+        }
+        }
     </tbody>
 </table>
 }

@@ -1,9 +1,12 @@
 ﻿@page "/historicdata"
 @inject HttpClient Http
 
+
+
 <h3>HistoricData</h3>
 
-if (Mains == null)
+
+@if (Mains == null)
 {
 <p><em>Problem with API</em></p>
 
@@ -11,55 +14,47 @@ if (Mains == null)
 else
 {
 
-<h1>Popular anime in chosen Genre:</h1>
-<div class="mb-2 p-3">
-    Choose a Genre:
-    <select class="form-control" @bind="instrument" @onclick="@GetDataAsync">
-        <option selected disabled value="-1"> Choose a </option>
-        <option value=1> Action</option>
-        <option value=2> Adventure</option>
-        <option value=4> Comedy</option>
-        <option value=6> Drama</option>
-        <option value=35> Slice of Life</option>
-    </select>
-</div>
+
 
 
 <table class="table">
     <thead>
         <tr>
-            <th>Stock Name</th>
-            <th>Open</th>
-            <th>High</th>
-            <th>Low</th>
-            <th>Close</th>
-           
+            <th>Complete</th>
+            <th>Volume</th>
+            <th>Time</th>
+            <th>open</th>
+            <th>high</th>
+            <th>low</th>
+            <th>close</th>
+
 
         </tr>
     </thead>
     <tbody>
-        
-        @if (Mains != null) {
-        @foreach (var ani in Mains.candles)
-        {
         <tr>
-            <td>@ani.complete</td>
 
 
-            <td>
-            @foreach (var gen in ani.mid)
+            @if (Mains != null)
             {
-            <td>@</td>
 
+                @foreach (var candles in Mains.candles)
+            {
+                <td>@candles.complete</td>
+                <td>@candles.volume</td>
+                <td>@candles.time</td>
+                <td>@candles.mid.o</td>
+                <td>@candles.mid.h</td>
+                <td>@candles.mid.l</td>
+                <td>@candles.mid.c</td>
+                }
             }
-            </td>
             
         </tr>
-
-        }
-        }
     </tbody>
 </table>
+
+
 }
 
 

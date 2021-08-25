@@ -5,10 +5,31 @@ using System.Threading.Tasks;
 
 namespace Forex.Model
 {
+    /*public class MyEnumerator
+    {*/
+       /* int nIndex;
+        MyCollection collection;
+        public MyEnumerator(MyCollection coll)
+        {
+            collection = coll;
+            nIndex = -1;
+        }
 
+        public bool MoveNext()
+        {
+            nIndex++;
+            return (nIndex < collection.items.Length);
+        }
+
+        public int Current => collection.items[nIndex];
+    }*/
     public class Mid
     {
-        public string o { get; set; }
+       /* public MyEnumerator GetEnumerator()
+   {  
+      return new MyEnumerator(this);
+    }*/
+    public string o { get; set; }
         public string h { get; set; }
         public string l { get; set; }
         public string c { get; set; }
@@ -28,5 +49,6 @@ namespace Forex.Model
         public string granularity { get; set; }
         public List<Candle> candles { get; set; }
     }
+
 }
 

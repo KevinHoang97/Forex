@@ -50,5 +50,18 @@ namespace Forex.Model
         public List<Candle> candles { get; set; }
     }
 
+    class Order
+    {
+        public int units { get; set; }
+        public string instrument { get; set; }
+        public string timeInForce { get; set; }
+        public string type { get; set; }
+        public string positionFill { get; set; }
+    }
+
+    class TradeInfo
+    {
+        public Order order { get; set; }
+    }
 }
 

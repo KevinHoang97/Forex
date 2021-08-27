@@ -31,13 +31,12 @@ namespace Forex.Pages
                     {
                     //https://api-fxpractice.oanda.com/v3/instruments/EUR_USD/candles?count=6&price=M&granularity=S5
 
-
                     string uri = "https://api-fxpractice.oanda.com/v3/instruments/" + instrument + "/candles?count=" + count + "&price=M&granularity=S5";
-                    Console.WriteLine(uri);
+                 //   Console.WriteLine(uri);
                     Mains = await Http.GetJsonAsync<Root>(uri);
-                    Console.WriteLine(Mains);
+                   // Console.WriteLine(Mains);
                     ErrorMessage = String.Empty;
-                    Console.WriteLine(ErrorMessage);
+                   // Console.WriteLine(ErrorMessage);
                     }
                 }
                 catch (Exception e)

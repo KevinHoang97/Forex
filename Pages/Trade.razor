@@ -1,5 +1,16 @@
-﻿<h3>Trade</h3>
+﻿@page "/trade"
+@inject HttpClient Http
+
+<h3>Trade</h3>
+
+@*<button OnClick="@PostFromBuy()">Post </button>*@
+@*<button OnClick="@PostBuy()">Post </button>*@
+<button OnClick="@Post()"> Post 3</button>
 
 @code {
-
+   @* protected async Task Create ()
+    {
+        
+      //  await Http.SendAsync(Http.PostAsync, "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders", tradeInfo);
+    }*@
 }

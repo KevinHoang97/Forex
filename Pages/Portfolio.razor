@@ -5,9 +5,9 @@
 
 @if (accountMain != null)
 {
-    <p> not null</p>
+    <p> Open Trade</p>
 
-    @accountMain.lastTransactionID
+    <p>Last Transaction id: </p>@accountMain.lastTransactionID
 
     <table class="table">
 
@@ -24,24 +24,17 @@
         </thead>
 
         <tbody>
-            <tr>
-                    @if (accountMain != null)
-                    {
-                        @foreach (var openTrade in accountMain.trades)
-                        {
-                            <td>@openTrade.instrument</td>
-                            <td>@openTrade.id</td>
-                            <td>@openTrade.currentUnits</td>
-                            <td>@openTrade.openTime</td>
-                            <td>@openTrade.price</td>
-                            <td>@openTrade.state</td>
-
-
-                        }
-                    }
-
+            @foreach (var openTrade in accountMain.trades)
+            {
+                <tr>
+                    <td>@openTrade.instrument</td>
+                    <td>@openTrade.id</td>
+                    <td>@openTrade.currentUnits</td>
+                    <td>@openTrade.openTime</td>
+                    <td>@openTrade.price</td>
+                    <td>@openTrade.state</td>
                 </tr>
-
+            }
         </tbody>
 
 

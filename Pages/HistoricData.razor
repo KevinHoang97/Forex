@@ -84,14 +84,15 @@ else
             </tr>
         </thead>
         <tbody>
-            <tr>
 
 
-                @if (Mains != null)
+
+            @if (Mains != null)
+            {
+
+                @foreach (var candles in Mains.candles)
                 {
-
-                    @foreach (var candles in Mains.candles)
-                    {
+                    <tr>
                         <td>@candles.complete</td>
                         <td>@candles.volume</td>
                         <td>@candles.time</td>
@@ -99,14 +100,16 @@ else
                         <td>@candles.mid.h</td>
                         <td>@candles.mid.l</td>
                         <td>@candles.mid.c</td>
-                    }
+                        
+                       
+
+                    </tr>
                 }
+            }
+                </tbody>
+        </table>
 
-            </tr>
-        </tbody>
-    </table>
 
-
-}
+            }
 
 

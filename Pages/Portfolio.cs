@@ -1,29 +1,39 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Forex.Model;
+using Forex.Shared;
+using System.IO;
+using System.Net;
 
 namespace Forex.Pages
 {
     public partial class Portfolio : ComponentBase
     {
-        public string account = "101-004-16583730-001";
-        *//*private async Task GetHistoricDataAsync()
+        private RootOpenTrade accountMain;
+        private string ErrorMessage;
+        private string accountId = "101-004-16583730-001";
+        
+        
+
+        private async Task GetOpenTradesDataAsync()
         {
             try
             {
 
                 {
-                    //https://api-fxpractice.oanda.com/v3/instruments/EUR_USD/candles?count=6&price=M&granularity=S5
+                    //https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/openTrades
+                   // string uri = "https://api-fxpractice.oanda.com/v3/instruments/EUR_USD/candles?count=6&price=M&granularity=S5";
 
-                    string uri = "https://api-fxpractice.oanda.com/v3/instruments/" + instrument + "/candles?count=" + count + "&price=M&granularity=" + granularity;
-                    //   Console.WriteLine(uri);
-                    Mains = await Http.GetJsonAsync<Root>(uri);
-                    // Console.WriteLine(Mains);
+                   string uri = "https://api-fxpractice.oanda.com/v3/accounts/" + accountId + "/openTrades";
+                       Console.WriteLine(uri);
+                    accountMain = await Http.GetJsonAsync<RootOpenTrade>(uri);
+                     Console.WriteLine(accountMain);
                     ErrorMessage = String.Empty;
-                    // Console.WriteLine(ErrorMessage);
+                     Console.WriteLine(ErrorMessage);
+                    Console.WriteLine(accountMain);
                 }
             }
             catch (Exception e)
@@ -38,10 +48,9 @@ namespace Forex.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            await GetHistoricDataAsync();
+            await GetOpenTradesDataAsync();
 
 
-        }*//*
+        }
     }
 }
-*/

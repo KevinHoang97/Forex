@@ -43,7 +43,7 @@ namespace Forex.Model
         public Mid mid { get; set; }
     }
 
-    public class Root
+    public class RootCandle
     {
         public string instrument { get; set; }
         public string granularity { get; set; }

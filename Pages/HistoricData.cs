@@ -17,7 +17,7 @@ namespace Forex.Pages
 
         public partial class HistoricData : ComponentBase
         {
-            private Root Mains;
+            private RootCandle Mains;
             private string ErrorMessage;
             public string instrument = "EUR_USD";
             public string granularity = "S5";
@@ -33,11 +33,11 @@ namespace Forex.Pages
                     //https://api-fxpractice.oanda.com/v3/instruments/EUR_USD/candles?count=6&price=M&granularity=S5
 
                     string uri = "https://api-fxpractice.oanda.com/v3/instruments/" + instrument + "/candles?count=" + count + "&price=M&granularity="+granularity;
-                 //   Console.WriteLine(uri);
-                    Mains = await Http.GetJsonAsync<Root>(uri);
-                   // Console.WriteLine(Mains);
+                    Console.WriteLine(uri);
+                    Mains = await Http.GetJsonAsync<RootCandle>(uri);
+                    Console.WriteLine(Mains);
                     ErrorMessage = String.Empty;
-                   // Console.WriteLine(ErrorMessage);
+                    Console.WriteLine(ErrorMessage);
                     }
                 }
                 catch (Exception e)

@@ -87,7 +87,7 @@ namespace Forex.Pages
                 try
                 {
 
-                    var response = await Http.PostBuyJsonAsync2<RootTrade>(uri, stringjson);
+                    var response = await Http.PostBuyJsonAsync2<RootMarket>(uri, stringjson);
                     Console.WriteLine(response);
 
                 }
@@ -128,7 +128,7 @@ namespace Forex.Pages
             try
             {
 
-                var response = await Http.PostBuyJsonAsync2<RootTrade>(uri, stringjson);
+                var response = await Http.PostBuyJsonAsync2<RootMarket>(uri, stringjson);
                 Console.WriteLine(response);
 
             }

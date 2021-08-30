@@ -34,7 +34,7 @@ namespace Forex.Model
         public string reason { get; set; }
     }
 
-    public class RootTrade
+    public class RootMarket
     {
         public OrderCreateTransaction orderCreateTransaction { get; set; }
         public OrderCancelTransaction orderCancelTransaction { get; set; }

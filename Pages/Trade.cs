@@ -13,30 +13,35 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using Newtonsoft.Json;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 //using Nancy.Json;
 namespace Forex.Pages
 {
 
     public partial class Trade : ComponentBase
     {
+        public int units;
+        public string instrument;
 
 
 
-        public async Task PostBuy()
+
+        public async Task PostBuy(int unit, string instrument)
         {
             {
+                Order order = new Order()
+                {
+
+                    units = unit,
+                    instrument = instrument,
+                    timeInForce = "FOK",
+                    type = "MARKET",
+                    positionFill = "DEFAULT"
+                };
 
                 TradeInfo trade = new TradeInfo()
                 {
-                    order = new Order()
-                    {
-
-                        units = 100,
-                        instrument = "EUR_USD",
-                        timeInForce = "FOK",
-                        type = "MARKET",
-                        positionFill = "DEFAULT"
-                    }
+                    order = order
                 };
 
 
@@ -60,14 +65,14 @@ namespace Forex.Pages
                 // await Http.SendJsonAsync(Http.PostAsync, "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders", tradeInfo);
             }
 
-           
+
 
         }
 
         public async Task PostSellAsync()
         {
 
-            TradeInfo trade = new TradeInfo()
+            TradeInfo trade = new TradeInfo
             {
                 order = new Order()
                 {
@@ -80,7 +85,7 @@ namespace Forex.Pages
                 }
             };
 
-            
+
 
             string uri = "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders";
 
@@ -109,42 +114,61 @@ namespace Forex.Pages
             string positionFill = "DEFAULT";
 
 
-                TradeInfo trade = new TradeInfo()
-                {
-                    order = new Order()
-                    {
-
-                        units = 100,
-                        instrument = "EUR_USD",
-                        timeInForce = "FOK",
-                        type = "MARKET",
-                        positionFill = "DEFAULT"
-                    }
-                };
-
-
-
-                string uri = "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders";
-
-                string stringjson = JsonConvert.SerializeObject(trade);
-                Console.WriteLine(stringjson);
-
-                try
+            TradeInfo trade = new TradeInfo()
+            {
+                order = new Order()
                 {
 
-                    var response = await Http.PostBuyJsonAsync2<RootMarket>(uri, stringjson);
-                    Console.WriteLine(response);
-
+                    units = 100,
+                    instrument = "EUR_USD",
+                    timeInForce = "FOK",
+                    type = "MARKET",
+                    positionFill = "DEFAULT"
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                // await Http.SendJsonAsync(Http.PostAsync, "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders", tradeInfo);
-            
+            };
 
 
 
+            string uri = "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders";
+
+            string stringjson = JsonConvert.SerializeObject(trade);
+            Console.WriteLine(stringjson);
+
+            try
+            {
+
+                var response = await Http.PostBuyJsonAsync2<RootMarket>(uri, stringjson);
+                Console.WriteLine(response);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            // await Http.SendJsonAsync(Http.PostAsync, "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders", tradeInfo);
+
+
+
+
+        }
+        public ActionResult TradeAction(int option)
+        {
+            if(option == 1)
+            {
+                 PostBuy(this.units, this.instrument);
+                Console.WriteLine(option);
+                
+            }
+            else if(option == 2)
+            {
+                PostSellAsync();
+                Console.WriteLine(option);
+            }
+            else
+            {
+                Console.WriteLine("Action not working");
+            }
+            return null;
         }
     }
     

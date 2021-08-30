@@ -21,48 +21,10 @@ namespace Forex.Pages
     {
 
 
-        /*public object PostFromBuy()
-        {
 
-            TradeInfo tradeInfo = new TradeInfo()
-            {
-               *//* units = 100,
-                instrument = "EUR_USD",
-                timeInForce = "FOK",
-                type = "MARKET",
-                positionFill = "DEFAULT"*//*
-            };
-
-            string uri = "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders";
-
-            string stringjson = JsonConvert.SerializeObject(tradeInfo);
-            Console.WriteLine(stringjson);
-
-            var response = Http.PostAsJsonAsync(uri, stringjson);
-            // var response = Http.PostAsJsonAsync("https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders", stringjson);
-            Console.WriteLine(response);
-            return null;
-        }*/
-
-       
-
-
-
-        
-
-        public async Task Post()
+        public async Task PostBuy()
         {
             {
-
-                /* TradeInfo tradeInfo = new TradeInfo()
-                 {
-
-                     units = 100,
-                     instrument = "EUR_USD",
-                     timeInForce = "FOK",
-                     type = "MARKET",
-                     positionFill = "DEFAULT"
-                 };*/
 
                 TradeInfo trade = new TradeInfo()
                 {
@@ -137,6 +99,52 @@ namespace Forex.Pages
                 Console.WriteLine(e.Message);
             }
             // await Http.SendJsonAsync(Http.PostAsync, "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders", tradeInfo);
+        }
+        public async Task PostTestBuy()
+        {
+            int units;
+            string instrument;
+            string timeInForce = "FOK";
+            string type = "MARKET";
+            string positionFill = "DEFAULT";
+
+
+                TradeInfo trade = new TradeInfo()
+                {
+                    order = new Order()
+                    {
+
+                        units = 100,
+                        instrument = "EUR_USD",
+                        timeInForce = "FOK",
+                        type = "MARKET",
+                        positionFill = "DEFAULT"
+                    }
+                };
+
+
+
+                string uri = "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders";
+
+                string stringjson = JsonConvert.SerializeObject(trade);
+                Console.WriteLine(stringjson);
+
+                try
+                {
+
+                    var response = await Http.PostBuyJsonAsync2<RootMarket>(uri, stringjson);
+                    Console.WriteLine(response);
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                // await Http.SendJsonAsync(Http.PostAsync, "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders", tradeInfo);
+            
+
+
+
         }
     }
     

@@ -12,9 +12,10 @@ namespace Forex.Pages
 {
     public partial class Portfolio : ComponentBase
     {
-        private RootOpenTrade accountMain;
+        private Root accountMain;
         private string ErrorMessage;
         private string accountId = "101-004-16583730-001";
+        //private string lastTrans;
         
         
 
@@ -28,21 +29,24 @@ namespace Forex.Pages
                    // string uri = "https://api-fxpractice.oanda.com/v3/instruments/EUR_USD/candles?count=6&price=M&granularity=S5";
 
                    string uri = "https://api-fxpractice.oanda.com/v3/accounts/" + accountId + "/openTrades";
-                       Console.WriteLine(uri);
-                    accountMain = await Http.GetJsonAsync<RootOpenTrade>(uri);
-                     Console.WriteLine(accountMain);
+                    //   Console.WriteLine(uri);
+                    accountMain = await Http.GetJsonAsync<Root>(uri);
+                //     Console.WriteLine(accountMain);
                     ErrorMessage = String.Empty;
-                     Console.WriteLine(ErrorMessage);
-                    Console.WriteLine(accountMain);
+                  //   Console.WriteLine(ErrorMessage);
+                    Console.WriteLine(accountMain.lastTransactionID);
+
+                  
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 ErrorMessage = e.Message;
-                Console.WriteLine(ErrorMessage);
+            //    Console.WriteLine(ErrorMessage);
             }
         }
+
 
 
 
@@ -50,7 +54,13 @@ namespace Forex.Pages
         {
             await GetOpenTradesDataAsync();
 
+        }
 
+        private object getLastTransaction()
+        {
+            var lastTrans = accountMain.lastTransactionID;
+
+            return lastTrans;
         }
     }
 }

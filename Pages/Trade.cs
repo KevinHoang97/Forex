@@ -69,7 +69,7 @@ namespace Forex.Pages
 
         }
 
-        public async Task PostSellAsync()
+        public async Task PostSellAsync(int unit, string instrument)
         {
 
             TradeInfo trade = new TradeInfo
@@ -77,8 +77,8 @@ namespace Forex.Pages
                 order = new Order()
                 {
 
-                    units = -50,
-                    instrument = "EUR_USD",
+                    units = -unit,
+                    instrument = instrument,
                     timeInForce = "FOK",
                     type = "MARKET",
                     positionFill = "DEFAULT"
@@ -105,7 +105,7 @@ namespace Forex.Pages
             }
             // await Http.SendJsonAsync(Http.PostAsync, "https://api-fxpractice.oanda.com/v3/accounts/101-004-16583730-001/orders", tradeInfo);
         }
-        public async Task PostTestBuy()
+        /*public async Task PostTestBuy()
         {
             int units;
             string instrument;
@@ -150,7 +150,7 @@ namespace Forex.Pages
 
 
 
-        }
+        }*/
         public ActionResult TradeAction(int option)
         {
             if(option == 1)
@@ -161,7 +161,7 @@ namespace Forex.Pages
             }
             else if(option == 2)
             {
-                PostSellAsync();
+                PostSellAsync(this.units, this.instrument);
                 Console.WriteLine(option);
             }
             else
@@ -170,6 +170,8 @@ namespace Forex.Pages
             }
             return null;
         }
+
+
     }
     
 }
